@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>report</title>
+</head>
+<body>
+<p>need admin to read? report your note here!</p>
+<form action="/report" method="post" enctype="application/x-www-form-urlencoded">
+    <label>note id:</label>
+    <input name="note" type="text">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+    <button type="submit">report</button>
+</form>
+</body>
+</html>

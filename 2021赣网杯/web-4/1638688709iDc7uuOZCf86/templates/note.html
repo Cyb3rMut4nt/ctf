@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval'; img-src 'self'; object-src 'none'; ">
+    <title>note</title>
+    <link href="{{ url_for('static', filename = 'bootstrap-3.3.7/css/bootstrap.min.css') }}" rel="stylesheet">
+</head>
+<body>
+<script src="{{ url_for('static', filename='bootstrap-3.3.7/js/jquery-3.4.1.min.js') }}"></script>
+<div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+        <a href="/" target="_self">HOME</a>
+        <a href="/note" target="_self">note</a>
+        <a href="/report" target="_self">report</a>
+        <a href="/checkQueue" target="_self">checkQueue</a>
+        <a href="/getToken" target="_self">getToken</a>
+        <a href="/flag" target="_self">flag</a>
+        <fieldset>
+            <legend>Note Detail</legend>
+            <div>
+                <p>  {% autoescape false %}{{ msg }}{% endautoescape %}</p>
+                {% if ok %}
+                <button type="button" id="button">report</button>
+                {% endif %}
+            </div>
+        </fieldset>
+    </div>
+    <div class="col-md-4">
+        <form id="form"  action="/report" method="post" enctype="application/x-www-form-urlencoded">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+            <input hidden name="note" value="{{ noteid }}" id="input">
+        </form>
+    </div>
+</div>
+<script language="JavaScript">
+    window.onload = function() {
+        $("#button").click(function() {
+            $("#form").submit()
+        })
+    }
+</script>
+</body>
+</html>
